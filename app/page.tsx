@@ -1,4 +1,4 @@
-import notes from "./lib/data";
+import { notes, users } from "./lib/data";
 
 export default function Home() {
   return (
@@ -9,13 +9,18 @@ export default function Home() {
             Notes App
           </h1>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+        <div className="flex flex-col gap-4 text-base font-medium sm:flex-col">
           {notes.map((note) => (
             <div key={note.id} className="flex flex-col gap-2 sm:flex-row">
               <div className="w-full sm:w-1/2">
                 <h2 className="text-xl font-semibold leading-10 tracking-tight text-black">
-                  {note.title}
+                  {users.find((user) => user.id === note.userId)?.username}
                 </h2>
+              </div>
+              <div className="w-full sm:w-1/2">
+                <h3 className="text-xl font-semibold leading-10 tracking-tight text-black">
+                  {note.title}
+                </h3>
                 <p className="text-sm leading-6 text-zinc-600">
                   {note.content}
                 </p>
